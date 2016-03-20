@@ -20,16 +20,6 @@ public class ContactData {
 
     }
 
-    public ContactData(String firstname, String middlename, String lastname, String nickname, String company) {
-        this.id = 0;
-        this.firstname = firstname;
-        this.middlename = middlename;
-        this.lastname = lastname;
-        this.nickname = nickname;
-        this.company = company;
-
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -44,6 +34,16 @@ public class ContactData {
     @Override
     public int hashCode() {
         return id;
+    }
+
+    public ContactData(String firstname, String middlename, String lastname, String nickname, String company) {
+        this.id = Integer.MAX_VALUE;
+        this.firstname = firstname;
+        this.middlename = middlename;
+        this.lastname = lastname;
+        this.nickname = nickname;
+        this.company = company;
+
     }
 
     @Override
