@@ -1,9 +1,6 @@
 package ua.stqu.pft.addressbook.model;
 
 public class ContactData {
-    public void setId(int id) {
-        this.id = id;
-    }
 
     private int id;
     private final String firstname;
@@ -11,16 +8,16 @@ public class ContactData {
     private final String lastname;
     private final String nickname;
     private final String company;
-    private String group;
 
-    public ContactData(int id, String firstname, String middlename, String lastname, String nickname, String company, String group) {
+
+    public ContactData(int id, String firstname, String middlename, String lastname, String nickname, String company) {
         this.id = id;
         this.firstname = firstname;
         this.middlename = middlename;
         this.lastname = lastname;
         this.nickname = nickname;
         this.company = company;
-        this.group = group;
+
     }
 
     @Override
@@ -30,38 +27,36 @@ public class ContactData {
 
         ContactData that = (ContactData) o;
 
-        if (id != that.id) return false;
-        if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
-        return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;
+        return id == that.id;
 
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
-        result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
-        return result;
+        return id;
     }
 
-    public ContactData(String firstname, String middlename, String lastname, String nickname, String company, String group) {
+    @Override
+    public String toString() {
+        return "ContactData{" +
+                "id=" + id +
+                '}';
+    }
+
+    public ContactData(String firstname, String middlename, String lastname, String nickname, String company) {
         this.id = 0;
         this.firstname = firstname;
         this.middlename = middlename;
         this.lastname = lastname;
         this.nickname = nickname;
         this.company = company;
-        this.group = group;
+
     }
 
-    @Override
-    public String toString() {
-        return "ContactData{" +
-                "id='" + id + '\'' +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                '}';
+    public void setId(int id) {
+        this.id = id;
     }
+
 
     public int getId() {
         return id;
@@ -89,8 +84,5 @@ public class ContactData {
         return company;
     }
 
-    public String getGroup() {
-        return group;
-    }
 
 }

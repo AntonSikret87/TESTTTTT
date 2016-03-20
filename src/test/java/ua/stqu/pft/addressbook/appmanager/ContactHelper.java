@@ -37,8 +37,9 @@ public class ContactHelper extends HelperBase {
 
 
 
-
-
+    public void initContactModification(int contacts_size) {
+        click(By.xpath("//*[@id='maintable']/tbody/tr[" + contacts_size + "]/td[8]/a"));
+    }
 
     public void modifiContact() {
         click(By.cssSelector("img[alt=\"Edit\"]"));
@@ -64,15 +65,16 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//input[@value='Delete']"));
     }
 
-    public void createContact(ContactData contact, boolean b) {
+    public void createContact(ContactData contact) {
         goToAddNewPage();
         fillContactsFields(contact);
         submitContactCreation();
         returnToHomePage();
     }
 
+
     public boolean isThereAContact() {
-        return isElementPresent(By.name("submit"));
+        return isElementPresent(By.name("selected[]"));
 
     }
     public void goToAddNewPage() {
@@ -93,7 +95,7 @@ public class ContactHelper extends HelperBase {
         for(WebElement element : elements){
             String name = element.getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            ContactData contact = new ContactData(id, name, null, null, null, null, null);
+            ContactData contact = new ContactData(id, name, null, null, null, null);
             contacts.add(contact);
         }
         return contacts;
